@@ -4,6 +4,8 @@ import {IronCheckedElementBehavior} from '@polymer/iron-checked-element-behavior
 import {IronButtonState} from '@polymer/iron-behaviors/iron-button-state.js';
 import {IronControlState} from '@polymer/iron-behaviors/iron-control-state.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@anypoint-components/anypoint-styles/typography.js';
+import '@anypoint-components/anypoint-styles/colors.js';
 /**
  * `anypoint-checkbox`
  * Anypoint styled checkbox
@@ -94,7 +96,6 @@ class AnypointCheckbox extends Polymer.mixinBehaviors([IronButtonState, IronCont
       .checkboxContainer {
         display: inline-block;
         position: relative;
-        margin-right: 10px;
         vertical-align: middle;
       }
 
@@ -109,11 +110,13 @@ class AnypointCheckbox extends Polymer.mixinBehaviors([IronButtonState, IronCont
         vertical-align: text-top;
         width: 20px;
         height: 20px;
+        -webkit-transition: background-color .17s ease-out;
+        transition: background-color .17s ease-out;
       }
 
       .checkmark {
-        -webkit-transition: box-shadow .3s linear;
-        transition: box-shadow .3s linear;
+        -webkit-transition: box-shadow .3s ease-out;
+        transition: box-shadow .3s ease-out;
         box-sizing: content-box;
         box-sizing: initial;
         position: absolute;
@@ -131,13 +134,13 @@ class AnypointCheckbox extends Polymer.mixinBehaviors([IronButtonState, IronCont
         vertical-align: middle;
         white-space: normal;
         line-height: normal;
-        padding-left: var(--anypoint-checkbox-label-spacing, 0px);
+        padding-left: var(--anypoint-checkbox-label-spacing, 5px);
         color: var(--anypoint-checkbox-label-color, var(--anypoint-color-steel1));
         @apply --anypoint-checkbox-label;
       }
 
       :host-context([dir="rtl"]) .checkboxLabel {
-        padding-right: var(--anypoint-checkbox-label-spacing, 0px);
+        padding-right: var(--anypoint-checkbox-label-spacing, 5px);
         padding-left: 0;
       }
 
@@ -188,7 +191,11 @@ class AnypointCheckbox extends Polymer.mixinBehaviors([IronButtonState, IronCont
       :host(:not([checked]):active) .checkmark
       :host(:not([checked]):focus) .checkmark {
         background: var(--anypoint-color-aluminum5);
-        box-shadow: 2px 0 0 var(--anypoint-color-aluminum5), 4px 0 0 var(--anypoint-color-aluminum5), 4px -2px 0 var(--anypoint-color-aluminum5), 4px -4px 0 var(--anypoint-color-aluminum5), 4px -6px 0 var(--anypoint-color-aluminum5);
+        box-shadow: 2px 0 0 var(--anypoint-color-aluminum5),
+                    4px 0 0 var(--anypoint-color-aluminum5),
+                    4px -2px 0 var(--anypoint-color-aluminum5),
+                    4px -4px 0 var(--anypoint-color-aluminum5),
+                    4px -6px 0 var(--anypoint-color-aluminum5);
         display: block;
       }
       </style>

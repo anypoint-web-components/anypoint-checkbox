@@ -7,9 +7,10 @@
   ],
   "private": true,
   "dependencies": {
-    "@polymer/polymer": "^3.0.0",
+    "@anypoint-components/anypoint-styles": "github:anypoint-components/anypoint-styles#3.0.0-preview",
     "@polymer/iron-behaviors": "^3.0.0-pre.19",
-    "@polymer/iron-checked-element-behavior": "^3.0.0-pre.19"
+    "@polymer/iron-checked-element-behavior": "^3.0.0-pre.19",
+    "@polymer/polymer": "^3.0.0"
   },
   "devDependencies": {
     "@polymer/gen-typescript-declarations": "^1.1.1",
