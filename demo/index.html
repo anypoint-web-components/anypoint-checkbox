@@ -4,34 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
     <title>anypoint-checkbox demo</title>
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module">
-      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
-      import '@polymer/iron-demo-helpers/demo-snippet';
-      import '@polymer/iron-form';
-    </script>
+    <script type="module" src="../node_modules/@advanced-rest-client/arc-demo-helper/arc-demo-helper.js"></script>
+    <script type="module" src="../node_modules/@anypoint-web-components/anypoint-styles/colors.js"></script>
+    <script type="module" src="../node_modules/@polymer/iron-form/iron-form.js"></script>
     <script type="module" src="../anypoint-checkbox.js"></script>
-    <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
+
+    <style>
       anypoint-checkbox {
         margin-right: 15px;
       }
-      </style>
-    </custom-style>
+    </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
       <h3>Basic anypoint-checkbox demo</h3>
-      <demo-snippet>
+      <arc-demo-helper>
         <template>
           <anypoint-checkbox>Checkbox</anypoint-checkbox>
           <anypoint-checkbox checked>Checkbox</anypoint-checkbox>
           <anypoint-checkbox disabled>Disabled</anypoint-checkbox>
         </template>
-      </demo-snippet>
+      </arc-demo-helper>
 
       <h3>Checkboxes in forms passing values</h3>
-      <demo-snippet>
+      <arc-demo-helper>
         <template>
           <iron-form id="form">
             <form is="iron-form">
@@ -52,7 +48,7 @@
             }
           </script>
         </template>
-      </demo-snippet>
+      </arc-demo-helper>
     </div>
   </body>
 </html>
