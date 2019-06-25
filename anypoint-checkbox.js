@@ -64,7 +64,7 @@ import { CheckedElementMixin } from '@anypoint-web-components/anypoint-form-mixi
  * @demo demo/index.html
  * @memberof AnypointComponents
  */
-class AnypointCheckbox extends CheckedElementMixin(ButtonStateMixin(ControlStateMixin(LitElement))) {
+class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(CheckedElementMixin(LitElement))) {
   static get styles() {
     return css`:host {
       display: inline-flex;
@@ -79,25 +79,59 @@ class AnypointCheckbox extends CheckedElementMixin(ButtonStateMixin(ControlState
       display: none !important;
     }
 
+    :host([disabled]),
+    :host([formdisabled]) {
+      cursor: auto;
+      pointer-events: none;
+      user-select: none;
+    }
+
     :host(:focus) {
       outline: none;
     }
 
     .hidden {
-      display: none;
+      display: none !important;
     }
 
     .checkboxContainer {
       display: inline-block;
       position: relative;
       vertical-align: middle;
+      padding: 12px;
+    }
+
+    .checkboxContainer:hover:before,
+      :host([focused]) .checkboxContainer:before {
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      opacity: .04;
+      background-color: var(--anypoint-checkbox-checked-color, var(--anypoint-color-primary));
+      pointer-events: none;
+      content: "";
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    :host([disabled]) .checkboxContainer:before,
+    :host([formdisabled]) .checkboxContainer:before {
+      display: none;
+    }
+
+    :host([focused]) .checkboxContainer:before {
+      opacity: .12;
     }
 
     .checkbox {
       position: relative;
       box-sizing: border-box;
       pointer-events: none;
-      border: 1px var(--anypoint-checkbox-input-border-bolor, var(--anypoint-color-aluminum4)) solid;
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--anypoint-checkbox-input-border-color, var(--anypoint-color-aluminum4));
+      border-radius: 2px;
       -webkit-transition: box-shadow .3s linear;
       transition: box-shadow .3s linear;
       display: inline-block;
@@ -109,17 +143,22 @@ class AnypointCheckbox extends CheckedElementMixin(ButtonStateMixin(ControlState
     }
 
     .checkmark {
-      -webkit-transition: box-shadow .3s ease-out;
-      transition: box-shadow .3s ease-out;
-      box-sizing: content-box;
-      box-sizing: initial;
+      transition: top .15s ease-in-out, height .2s ease-in-out, width .3s ease-in-out;
+      will-change: top, width, height;
       position: absolute;
+      display: block;
       left: 4px;
-      top: calc(50% - 2px);
-      width: 3px;
-      height: 2px;
-      -webkit-transform: rotate(45deg);
-      transform: rotate(45deg);
+    }
+
+    :host([checked]) .checkmark {
+      border-color: var(--anypoint-checkbox-checkmark-color, var(--anypoint-color-tertiary));
+      border-style: none none solid solid;
+      border-width: 3px;
+      height: 5px;
+      top: 3px;
+      transform: rotate(-45deg);
+      width: 8px;
+      background: transparent;
     }
 
     .checkboxLabel {
@@ -128,7 +167,6 @@ class AnypointCheckbox extends CheckedElementMixin(ButtonStateMixin(ControlState
       vertical-align: middle;
       white-space: normal;
       line-height: normal;
-      padding-left: var(--anypoint-checkbox-label-spacing, 5px);
       color: var(--anypoint-checkbox-label-color, var(--anypoint-color-steel1));
     }
 
@@ -137,19 +175,20 @@ class AnypointCheckbox extends CheckedElementMixin(ButtonStateMixin(ControlState
       padding-left: 0;
     }
 
-    :host([checked]) .checkbox {
-      background: var(--anypoint-color-primary);
-      border: 1px var(--anypoint-color-primary) solid;
+    :host([checked]) .checkbox,
+    :host(:not([checked])[indeterminate]) .checkbox {
+      background-color: var(--anypoint-checkbox-checked-color, var(--anypoint-color-primary));
+      border-color: var(--anypoint-checkbox-checked-input-border-color, var(--anypoint-color-primary));
     }
 
-    :host([checked]) .checkmark {
-      background: var(--anypoint-color-tertiary);
-      box-shadow: 2px 0 0 var(--anypoint-color-tertiary),
-                  4px 0 0 var(--anypoint-color-tertiary),
-                  4px -2px 0 var(--anypoint-color-tertiary),
-                  4px -4px 0 var(--anypoint-color-tertiary),
-                  4px -6px 0 var(--anypoint-color-tertiary);
+    :host(:not([checked])[indeterminate]) .checkmark {
+      background-color: var(--anypoint-checkbox-checkmark-color, var(--anypoint-color-tertiary));
+      height: 3px;
+      width: 10px;
+      top: calc(50% - 1px);
+      border: none;
     }
+
 
     :host([checked]) .checkboxLabel {
       color: var(--anypoint-checkbox-label-checked-color,
@@ -160,60 +199,58 @@ class AnypointCheckbox extends CheckedElementMixin(ButtonStateMixin(ControlState
       display: none;
     }
 
-    :host([disabled]) .checkbox {
+    :host([disabled]) .checkbox,
+    :host([formdisabled]) .checkbox {
       opacity: 0.5;
       border-color: var(--anypoint-checkbox-unchecked-color,
         var(--anypoint-checkbox-label-color, var(--anypoint-color-steel1)));
     }
 
-    :host([disabled][checked]) .checkbox {
+    :host([disabled][checked]) .checkbox,
+    :host([formdisabled][checked]) .checkbox {
       background-color: var(--anypoint-checkbox-unchecked-color,
         var(--anypoint-checkbox-label-color, var(--anypoint-color-steel1)));
       opacity: 0.5;
     }
 
-    :host([disabled]) .checkboxLabel {
+    :host([disabled]) .checkboxLabel,
+    :host([formdisabled]) .checkboxLabel {
       opacity: 0.65;
     }
 
     /* invalid state */
-    .checkbox.invalid:not(.checked) {
+    .checkbox.invalid:not(.checked),
+    :host(:invalid) .checkbox {
       border-color: var(--anypoint-checkbox-error-color, var(--anypoint-color-danger));
-    }
-
-    /* Hovered */
-    :host(:active) .checkbox,
-    :host(:focus) .checkbox {
-      box-shadow: 0 0 0 0.25em rgba(0,0,0,.12);
-    }
-
-    :host(:not([checked]):active) .checkmark
-    :host(:not([checked]):focus) .checkmark {
-      background: var(--anypoint-color-aluminum5);
-      box-shadow: 2px 0 0 var(--anypoint-color-aluminum5),
-                  4px 0 0 var(--anypoint-color-aluminum5),
-                  4px -2px 0 var(--anypoint-color-aluminum5),
-                  4px -4px 0 var(--anypoint-color-aluminum5),
-                  4px -6px 0 var(--anypoint-color-aluminum5);
-      display: block;
     }`;
   }
 
   render() {
-    const { checked, invalid } = this;
+    const { checked, invalid, indeterminate } = this;
     return html`
       <div class="checkboxContainer">
         <div class="checkbox ${this._computeCheckboxClass(checked, invalid)}">
-          <div class="checkmark ${this._computeCheckmarkClass(checked)}"></div>
+          <div class="checkmark ${this._computeCheckmarkClass(checked, indeterminate)}"></div>
         </div>
       </div>
-      <div class="checkboxLabel"><slot></slot></div>
-    `;
+      <label class="checkboxLabel"><slot></slot></label>`;
+  }
+
+  static get formAssociated() {
+    return true;
+  }
+
+  get form() {
+    return this._internals && this._internals.form;
   }
 
   static get properties() {
     return {
-      ariaActiveAttribute: { type: String }
+      ariaActiveAttribute: { type: String },
+
+      indeterminate: { type: Boolean, reflect: true },
+
+      formDisabled: { type: Boolean, reflect: true }
     };
   }
 
@@ -222,19 +259,23 @@ class AnypointCheckbox extends CheckedElementMixin(ButtonStateMixin(ControlState
     this.ariaActiveAttribute = 'aria-checked';
     /* to work with iron-form */
     this._hasIronCheckedElementBehavior = true;
+    if (this.attachInternals) {
+      this._internals = this.attachInternals();
+    }
   }
 
   connectedCallback() {
+    // button state mixin sets role to checkbox
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'checkbox');
     }
+    super.connectedCallback();
     if (!this.hasAttribute('aria-checked')) {
       this.setAttribute('aria-checked', 'false');
     }
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', '0');
     }
-    super.connectedCallback();
   }
 
   _computeCheckboxClass(checked, invalid) {
@@ -245,24 +286,80 @@ class AnypointCheckbox extends CheckedElementMixin(ButtonStateMixin(ControlState
     if (invalid) {
       className += 'invalid';
     }
-    return className;
+    return className.trim();
   }
 
-  _computeCheckmarkClass(checked) {
+  _computeCheckmarkClass(checked, indeterminate) {
+    if (!checked && indeterminate) {
+      return '';
+    }
     return checked ? '' : 'hidden';
   }
   /**
    * Synchronizes the element's `active` and `checked` state.
    */
   _buttonStateChanged() {
-    if (this.disabled) {
+    if (this.disabled || this.indeterminate) {
       return;
     }
     this.checked = this.active;
   }
 
   _clickHandler() {
+    if (this.disabled) {
+      return;
+    }
+    if (this.indeterminate) {
+      this.indeterminate = false;
+    }
     this.active = !this.active;
+  }
+
+  _checkedChanged(value) {
+    super._checkedChanged(value);
+    if (this.indeterminate) {
+      this.indeterminate = false;
+    }
+    this.setAttribute('aria-checked', value ? 'true' : 'false');
+    if (this._internals) {
+      this._internals.setFormValue(value ? this.value : '');
+
+      if (!this.matches(':disabled') && this.hasAttribute('required') && !value) {
+        this._internals.setValidity({
+          customError: true
+        }, 'This field is required.');
+      } else {
+        this._internals.setValidity({});
+      }
+    } else {
+      this.validate();
+    }
+  }
+
+  _spaceKeyDownHandler(e) {
+    if (this.indeterminate) {
+      this.indeterminate = false;
+    }
+    super._spaceKeyDownHandler(e);
+  }
+
+  checkValidity() {
+    return this._internals ? this._internals.checkValidity() :
+      this.required ? this.checked : true;
+  }
+
+  formDisabledCallback(disabled) {
+    this.formDisabled = disabled;
+  }
+
+  formResetCallback() {
+    this.checked = false;
+    this._internals.setFormValue('');
+  }
+
+  formStateRestoreCallback(state) {
+    this._internals.setFormValue(state);
+    this.checked = !!state;
   }
   /**
    * Fired when the checked state changes due to user interaction.
