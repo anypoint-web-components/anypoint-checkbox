@@ -62,7 +62,7 @@ import { CheckedElementMixin } from '@anypoint-web-components/anypoint-form-mixi
  * @customElement
  * @polymer
  * @demo demo/index.html
- * @memberof AnypointComponents
+ * @memberof AnypointUi
  */
 class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(CheckedElementMixin(LitElement))) {
   static get styles() {
