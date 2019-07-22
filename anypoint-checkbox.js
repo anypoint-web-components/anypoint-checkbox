@@ -269,7 +269,9 @@ class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(CheckedElement
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'checkbox');
     }
-    super.connectedCallback();
+    if (super.connectedCallback) {
+      super.connectedCallback();
+    }
     if (!this.hasAttribute('aria-checked')) {
       this.setAttribute('aria-checked', 'false');
     }
