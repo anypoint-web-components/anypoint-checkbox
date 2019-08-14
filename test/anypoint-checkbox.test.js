@@ -1,5 +1,4 @@
 import { fixture, assert, aTimeout } from '@open-wc/testing';
-import { a11ySuite } from '@advanced-rest-client/a11y-suite/index.js';
 import '@polymer/iron-test-helpers/mock-interactions.js';
 import '../anypoint-checkbox.js';
 
@@ -88,11 +87,30 @@ describe('<anypoint-checkbox>', function() {
       assert.equal(c5.getAttribute('tabindex'), '-1');
     });
 
-    a11ySuite('No label', '<anypoint-checkbox></anypoint-checkbox>');
-    a11ySuite('With label', '<anypoint-checkbox>Batman</anypoint-checkbox>');
-    a11ySuite('Aria label', '<anypoint-checkbox aria-label="Batman">Robin</anypoint-checkbox>');
-    a11ySuite('Disabled', '<anypoint-checkbox disabled>Robin</anypoint-checkbox>');
-    a11ySuite('Checked', '<anypoint-checkbox chected>Robin</anypoint-checkbox>');
+    it('is not accessible without the label', async () => {
+      const element = await fixture(`<anypoint-checkbox></anypoint-checkbox>`);
+      await assert.isNotAccessible(element);
+    });
+
+    it('is accessible with label', async () => {
+      const element = await fixture(`<anypoint-checkbox>Checkbox</anypoint-checkbox>`);
+      await assert.isAccessible(element);
+    });
+
+    it('is accessible with aria label', async () => {
+      const element = await fixture(`<anypoint-checkbox aria-label="Checkbox"></anypoint-checkbox>`);
+      await assert.isAccessible(element);
+    });
+
+    it('is accessible with aria label', async () => {
+      const element = await fixture(`<anypoint-checkbox disabled>Disabled checkbox</anypoint-checkbox>`);
+      await assert.isAccessible(element);
+    });
+
+    it('is accessible when checked', async () => {
+      const element = await fixture(`<anypoint-checkbox checked>Checked checkbox</anypoint-checkbox>`);
+      await assert.isAccessible(element);
+    });
   });
 
   describe('Defaults', () => {
