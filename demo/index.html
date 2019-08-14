@@ -1,145 +1,49 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-    <title>anypoint-checkbox demo</title>
-    <script type="module" src="../node_modules/@advanced-rest-client/arc-demo-helper/arc-demo-helper.js"></script>
-    <script type="module" src="../node_modules/@anypoint-web-components/anypoint-styles/colors.js"></script>
-    <script type="module" src="../node_modules/@polymer/iron-form/iron-form.js"></script>
-    <script type="module" src="../anypoint-checkbox.js"></script>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <title>anypoint-rcheckbox demo</title>
+  <style>
+    .centered[role="main"] {
+      max-width: 1400px;
+    }
 
-    <style>
-      anypoint-checkbox {
-        display: block;
-      }
+    .block-label {
+      display: block;
+    }
 
-      p {
-        color: #616161;
-      }
+    details summary {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin: 12px 0px;
+    }
 
-      #supportsForm {
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic anypoint-checkbox demo</h3>
-      <arc-demo-helper>
-        <template>
-          <anypoint-checkbox>Regular checkbox</anypoint-checkbox>
-          <anypoint-checkbox checked>Checked checkbox</anypoint-checkbox>
-          <anypoint-checkbox indeterminate>Indeterminate checkbox</anypoint-checkbox>
-          <anypoint-checkbox required>Required checkbox</anypoint-checkbox>
-          <anypoint-checkbox disabled>Disabled checkbox</anypoint-checkbox>
-        </template>
-      </arc-demo-helper>
+    .styled h4 {
+      margin: 40px 0 24px 0;
+    }
 
-      <h3>anypoint-checkbox with styles</h3>
-      <arc-demo-helper>
-        <template>
-          <anypoint-checkbox class="styled">Checkbox</anypoint-checkbox>
-          <anypoint-checkbox class="styled" checked>Checkbox</anypoint-checkbox>
-          <anypoint-checkbox class="styled" indeterminate>Checkbox</anypoint-checkbox>
-          <anypoint-checkbox class="styled" required>Required checkbox</anypoint-checkbox>
-          <anypoint-checkbox class="styled" disabled>Disabled</anypoint-checkbox>
-          <style>
-          .styled {
-            --anypoint-checkbox-input-border-color: rgba(0, 0, 0, 0.54);
-            --anypoint-checkbox-checked-color: #FFC107;
-            --anypoint-checkbox-checkmark-color: #E91E63;
-            --anypoint-checkbox-checked-input-border-color: #FFC107;
-            --anypoint-checkbox-input-border-color: #3F51B5;
-            --anypoint-checkbox-error-color: #FF7043;
-          }
-          </style>
-        </template>
-      </arc-demo-helper>
+    .communication-options {
+      padding-left: 20px;
+    }
 
-      <h3>Inline checkboxes</h3>
-      <p>Note, checkboxes are rendered inline by default. This demo uses global style for the checkboxes to use block style.</p>
-      <arc-demo-helper>
-        <template>
-          <anypoint-checkbox class="inline">Checkbox</anypoint-checkbox>
-          <anypoint-checkbox class="inline" checked>Checkbox</anypoint-checkbox>
-          <anypoint-checkbox class="inline" disabled>Disabled</anypoint-checkbox>
-          <style>
-          .inline {
-            display: inline-flex;
-          }
-          </style>
-        </template>
-      </arc-demo-helper>
+    .communication-options anypoint-checkbox {
+      display: block;
+    }
 
-      <h3>Checkboxes in forms passing values</h3>
-      <p>Note, currently the spec allowing custom elements to be accepted by the &lt;form&gt; element is work in progress. Custom form element has to be used with custom elements that needs to be registered in a form. We suggest using <a href="https://www.webcomponents.org/element/@polymer/iron-form">iron-form</a>.</p>
-      <arc-demo-helper>
-        <template>
-          <iron-form id="form">
-            <form>
-              <fieldset>
-                <anypoint-checkbox name="subscribe" value="newsletetr">Subsceribe to our newsletter</anypoint-checkbox>
-                <anypoint-checkbox name="tems" value="accepted" checked required>Agree to terms and conditions</anypoint-checkbox>
-                <anypoint-checkbox name="disabled" value="noop" disabled>This is never included</anypoint-checkbox>
-              </fieldset>
-            </form>
-          </iron-form>
-          <button id="submitButton">Submit</button>
-          <div>
-            <code id="formValues"></code>
-          </div>
-          <script>
-          {
-            document.getElementById('submitButton')
-            .addEventListener('click', () => {
-              const form = document.getElementById('form');
-              const out = document.querySelector('#formValues');
-              const values = form.serializeForm();
-              out.innerText = JSON.stringify(values, null, 2);
-            });
-          }
-          </script>
-        </template>
-      </arc-demo-helper>
+    anypoint-checkbox {
+      display: block;
+    }
 
-      <h3>Form association</h3>
-      <p>Note, currently the spec allowing custom elements to be accepted by the &lt;form&gt; element is work in progress. This browser <span id="supportsForm"></span> form association.</p>
-      <arc-demo-helper>
-        <template>
-          <form id="nativeForm">
-            <fieldset>
-              <anypoint-checkbox name="subscribe" value="newsletetr" required>Subsceribe to our newsletter</anypoint-checkbox>
-              <anypoint-checkbox name="tems" value="accepted" checked required>Agree to terms and conditions</anypoint-checkbox>
-              <anypoint-checkbox name="disabled" value="noop" disabled>This is never included</anypoint-checkbox>
-            </fieldset>
-            <button type="submit">Submit</button>
-          </form>
-          <div>
-            <code id="nativeFormValues"></code>
-          </div>
-          <script>
-            {
-              const form = document.getElementById('nativeForm');
-              form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const out = document.querySelector('#nativeFormValues');
-                const fd = new FormData(e.target);
-                let result = 'Collected values:\n';
-                fd.forEach((value, name) => result += `${name}: ${value}\n`);
-                out.innerText = result;
-              });
-
-              window.customElements.whenDefined('anypoint-checkbox')
-              .then(() => {
-                const hasSupport = form.elements.length > 2;
-                const label = document.getElementById('supportsForm');
-                label.innerText = hasSupport ? 'support' : 'does not support';
-              });
-            }
-          </script>
-        </template>
-      </arc-demo-helper>
-    </div>
-  </body>
+    #supportsForm {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="styled">
+  <div id="demo"></div>
+  <script type="module" src="./index.js"></script>
+</body>
 </html>

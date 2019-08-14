@@ -36,6 +36,7 @@
     "@advanced-rest-client/eslint-config": "^1.0.7",
     "@advanced-rest-client/prettier-config": "^0.1.0",
     "@advanced-rest-client/testing-karma-sl": "^1.0.3",
+    "@anypoint-web-components/anypoint-radio-button": "^0.1.2",
     "@anypoint-web-components/anypoint-styles": "^1.0.0-preview.1",
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^7.0.0",

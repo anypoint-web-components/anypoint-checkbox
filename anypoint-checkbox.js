@@ -257,6 +257,7 @@ class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(CheckedElement
   constructor() {
     super();
     this.ariaActiveAttribute = 'aria-checked';
+    this.checked = false;
     /* to work with iron-form */
     this._hasIronCheckedElementBehavior = true;
     if (this.attachInternals) {

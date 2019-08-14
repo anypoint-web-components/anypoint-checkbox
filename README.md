@@ -30,12 +30,20 @@ npm i --save @anypoint-web-components/anypoint-checkbox
 ### In a HTML document
 
 ```html
-<script type="module" src="node_modules/@anypoint-web-components/anypoint-checkbox/anypoint-checkbox.js"></script>
-<anypoint-checkbox>Regular checkbox</anypoint-checkbox>
-<anypoint-checkbox checked>Checked checkbox</anypoint-checkbox>
-<anypoint-checkbox indeterminate>Indeterminate checkbox</anypoint-checkbox>
-<anypoint-checkbox required>Required checkbox</anypoint-checkbox>
-<anypoint-checkbox disabled>Disabled checkbox</anypoint-checkbox>
+<html>
+  <head>
+    <script type="module">
+      import '@anypoint-web-components/anypoint-checkbox/anypoint-checkbox.js';
+    </script>
+  </head>
+  <body>
+    <anypoint-checkbox>Regular checkbox</anypoint-checkbox>
+    <anypoint-checkbox checked>Checked checkbox</anypoint-checkbox>
+    <anypoint-checkbox indeterminate>Indeterminate checkbox</anypoint-checkbox>
+    <anypoint-checkbox required>Required checkbox</anypoint-checkbox>
+    <anypoint-checkbox disabled>Disabled checkbox</anypoint-checkbox>
+  </body>
+</html>
 ```
 
 ### In a LitElement
