@@ -65,7 +65,7 @@ import { CheckedElementMixin } from '@anypoint-web-components/anypoint-form-mixi
  * @memberof AnypointUi
  */
 class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(CheckedElementMixin(LitElement))) {
-  static get styles() {
+  get styles() {
     return css`:host {
       display: inline-flex;
       align-items: center;
@@ -227,7 +227,7 @@ class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(CheckedElement
 
   render() {
     const { checked, invalid, indeterminate } = this;
-    return html`
+    return html`<style>${this.styles}</style>
       <div class="checkboxContainer">
         <div class="checkbox ${this._computeCheckboxClass(checked, invalid)}">
           <div class="checkmark ${this._computeCheckmarkClass(checked, indeterminate)}"></div>
