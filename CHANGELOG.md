@@ -44,3 +44,16 @@
 * updated Travis configuration to connect to Sauce Labs [c0fd2ab](https://github.com/anypoint-web-components/anypoint-checkbox/commit/c0fd2abfceb1a6da58363754eb1fe0aaf4b97303) by Pawel
 
 
+<a name="1.1.0"></a>
+## [1.1.0](https://github.com/anypoint-web-components/anypoint-checkbox/compare/1.0.2...1.1.0) (2020-05-29)
+
+### Update
+
+* [ci skip] automated merge master->stage. syncing main branches [999cd05](https://github.com/anypoint-web-components/anypoint-checkbox/commit/999cd05d5921b0373c7f1ffcf99738e7eaef4a68) by Ci agent
+
+
+### Refactor
+
+* upgrading to open-wc standard [3350aec](https://github.com/anypoint-web-components/anypoint-checkbox/commit/3350aec2ee48c664ec638e7f72fd5a12f0c73682) by Pawel
+
+
