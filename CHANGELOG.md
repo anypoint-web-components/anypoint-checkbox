@@ -57,3 +57,18 @@
 * upgrading to open-wc standard [3350aec](https://github.com/anypoint-web-components/anypoint-checkbox/commit/3350aec2ee48c664ec638e7f72fd5a12f0c73682) by Pawel
 
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/anypoint-web-components/anypoint-checkbox/compare/1.0.2...1.1.1) (2020-05-29)
+
+### Update
+
+* [ci skip] automated merge master->stage. syncing main branches [e12eece](https://github.com/anypoint-web-components/anypoint-checkbox/commit/e12eece9874c7536c708c353fabfbb7b1b120b18) by Ci agent
+* adding types [7c20356](https://github.com/anypoint-web-components/anypoint-checkbox/commit/7c20356fdf33e69c7bd61b75fb67d48cd66f3f57) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [999cd05](https://github.com/anypoint-web-components/anypoint-checkbox/commit/999cd05d5921b0373c7f1ffcf99738e7eaef4a68) by Ci agent
+
+
+### Refactor
+
+* upgrading to open-wc standard [3350aec](https://github.com/anypoint-web-components/anypoint-checkbox/commit/3350aec2ee48c664ec638e7f72fd5a12f0c73682) by Pawel
+
+
