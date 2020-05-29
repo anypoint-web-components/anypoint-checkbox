@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/anypoint-web-components/anypoint-checkbox.svg?branch=master)](https://travis-ci.org/anypoint-web-components/anypoint-checkbox)
+[![Build Status](https://travis-ci.com/anypoint-web-components/anypoint-checkbox.svg)](https://travis-ci.com/anypoint-web-components/anypoint-checkbox)
 
 [![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/anypoint-checkbox.svg)](https://www.npmjs.com/package/@anypoint-web-components/anypoint-checkbox)
 
@@ -92,7 +92,7 @@ npm i --save @polymer/iron-form
 </script>
 ```
 
-### Development
+## Development
 
 ```sh
 git clone https://github.com/anypoint-web-components/anypoint-checkbox
