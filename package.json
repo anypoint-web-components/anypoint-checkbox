@@ -1,9 +1,10 @@
 {
   "name": "@anypoint-web-components/anypoint-checkbox",
   "description": "Anypoint styled checkbox",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "Apache-2.0",
-  "main": "anypoint-checkbox.js",
+  "main": "index.js",
+  "module": "index.js",
   "keywords": [
     "web-components",
     "anypoint",
