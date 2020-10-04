@@ -88,3 +88,18 @@
 * fixed module import definition [e1b3718](https://github.com/anypoint-web-components/anypoint-checkbox/commit/e1b3718c9582ec0d6c3ff5b01229f8740df70196) by Pawel
 
 
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/anypoint-web-components/anypoint-checkbox/compare/1.1.1...1.1.3) (2020-10-04)
+
+### Update
+
+* updating types and the demo page [6518c88](https://github.com/anypoint-web-components/anypoint-checkbox/commit/6518c887021f93f2866e62183972f85126421329) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [a9bc23a](https://github.com/anypoint-web-components/anypoint-checkbox/commit/a9bc23a1cc635d0ae47d43911d3b8a296b4b42d1) by Ci agent
+* [ci skip] automated merge master->stage. syncing main branches [d3a7b51](https://github.com/anypoint-web-components/anypoint-checkbox/commit/d3a7b51b811a6409ce23f96a2e248e6570fa8f6a) by Ci agent
+
+
+### Bug Fixes
+
+* fixed module import definition [e1b3718](https://github.com/anypoint-web-components/anypoint-checkbox/commit/e1b3718c9582ec0d6c3ff5b01229f8740df70196) by Pawel
+
+
