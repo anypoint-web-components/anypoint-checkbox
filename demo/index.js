@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { html } from 'lit-html';
 import { ArcDemoPage } from '@advanced-rest-client/arc-demo-helper/ArcDemoPage.js';
 import '@advanced-rest-client/arc-demo-helper/arc-interactive-demo.js';
@@ -5,10 +6,12 @@ import '@anypoint-web-components/anypoint-radio-button/anypoint-radio-button.js'
 import '@anypoint-web-components/anypoint-radio-button/anypoint-radio-group.js';
 import '@anypoint-web-components/anypoint-styles/colors.js';
 import '@polymer/iron-form/iron-form.js';
-
+import introTemplate from './templateIntroduction.js';
 import '../anypoint-checkbox.js';
 
-import introTemplate from './templateIntroduction.js';
+/** @typedef {import('../index').AnypointCheckbox} AnypointCheckbox */
+/** @typedef {import('@polymer/iron-form').IronFormElement} IronFormElement */
+
 const hasFormAssociatedElements = 'attachInternals' in document.createElement('span');
 
 class ComponentDemo extends ArcDemoPage {
@@ -18,7 +21,9 @@ class ComponentDemo extends ArcDemoPage {
       'demoDisabled'
     ]);
     this.componentName = 'anypoint-checkbox';
-    this.demoStates = ['Normal'];
+    this.demoStates = ['Regular'];
+    this.darkThemeActive = false;
+    this.demoDisabled = false;
     this._toggleMainOption = this._toggleMainOption.bind(this);
     this._communicationHandler = this._communicationHandler.bind(this);
     this._communicationItemHandler = this._communicationItemHandler.bind(this);
@@ -35,27 +40,27 @@ class ComponentDemo extends ArcDemoPage {
     if (this.__cancelCommunicationChange) {
       return;
     }
-    const nodes = document.querySelectorAll('.communication-options anypoint-checkbox');
+    const nodes = /** @type AnypointCheckbox[] */ (Array.from(document.querySelectorAll('.communication-options anypoint-checkbox')));
     const state = e.target.checked;
-    for (let i = 0; i < nodes.length; i++) {
-      nodes[i].checked = state;
-    }
+    nodes.forEach((node) => {
+      node.checked = state;
+    });
   }
 
   _communicationItemHandler() {
-    const nodes = document.querySelectorAll('.communication-options anypoint-checkbox');
+    const nodes = /** @type AnypointCheckbox[] */ (Array.from(document.querySelectorAll('.communication-options anypoint-checkbox')));
     const checkedNodes = [];
     const notCheckedNodes = [];
     // at the time when event is dispatched the attribute is not yet reflected.
-    for (let i = 0; i < nodes.length; i++) {
-      if (nodes[i].checked) {
-        checkedNodes[checkedNodes.length] = nodes[i];
+    nodes.forEach((node) => {
+      if (node.checked) {
+        checkedNodes[checkedNodes.length] = node;
       } else {
-        notCheckedNodes[notCheckedNodes.length] = nodes[i];
+        notCheckedNodes[notCheckedNodes.length] = node;
       }
-    }
+    });
     const indeterminate = !!checkedNodes.length && !!notCheckedNodes.length;
-    const parent = document.querySelector('#communication');
+    const parent = /** @type AnypointCheckbox */ (document.querySelector('#communication'));
     if (indeterminate) {
       this.__cancelCommunicationChange = true;
       parent.checked = false;
@@ -72,8 +77,8 @@ class ComponentDemo extends ArcDemoPage {
   }
 
   _ironFormSubmit() {
-    const form = document.getElementById('form');
-    const out = document.querySelector('#formValues');
+    const form = /** @type IronFormElement */ (document.getElementById('form'));
+    const out = /** @type HTMLElement */ (document.querySelector('#formValues'));
     const values = form.serializeForm();
     out.innerText = JSON.stringify(values, null, 2);
   }
@@ -83,7 +88,8 @@ class ComponentDemo extends ArcDemoPage {
     const out = document.querySelector('#nativeFormValues');
     const fd = new FormData(e.target);
     let result = 'Collected values:\n';
-    fd.forEach((value, name) => result += `${name}: ${value}\n`);
+    fd.forEach((value, name) => { result += `${name}: ${value}\n`; });
+    // @ts-ignore
     out.innerText = result;
   }
 
@@ -171,7 +177,7 @@ class ComponentDemo extends ArcDemoPage {
       <h3>Selection state</h3>
 
       <p>
-        A chekcbox can be <b>unselected</b>, <b>selected</b>, or <b>indeterminate</b>.
+        A checkbox can be <b>unselected</b>, <b>selected</b>, or <b>indeterminate</b>.
       </p>
 
       <h4>Indeterminate state</h4>
@@ -238,9 +244,9 @@ class ComponentDemo extends ArcDemoPage {
             <fieldset>
               <anypoint-checkbox
                 name="subscribe"
-                value="newsletetr">Subsceribe to our newsletter</anypoint-checkbox>
+                value="newsletter">Subscribe to our newsletter</anypoint-checkbox>
               <anypoint-checkbox
-                name="tems"
+                name="terms"
                 value="accepted" checked required>Agree to terms and conditions</anypoint-checkbox>
               <anypoint-checkbox
                 name="disabled"
@@ -277,7 +283,7 @@ class ComponentDemo extends ArcDemoPage {
           <fieldset>
             <anypoint-checkbox
               name="options"
-              value="newsletetr" required>Subsceribe to our newsletter</anypoint-checkbox>
+              value="newsletter" required>Subscribe to our newsletter</anypoint-checkbox>
             <anypoint-checkbox
               name="options"
               value="accepted" checked required>Agree to terms and conditions</anypoint-checkbox>
@@ -318,4 +324,3 @@ class ComponentDemo extends ArcDemoPage {
 }
 const instance = new ComponentDemo();
 instance.render();
-window.demo = instance;

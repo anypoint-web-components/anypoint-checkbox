@@ -1,10 +1,10 @@
+# anypoint-checkbox
+
+Anypoint and Material DS styled checkbox.
+
 [![Build Status](https://travis-ci.com/anypoint-web-components/anypoint-checkbox.svg)](https://travis-ci.com/anypoint-web-components/anypoint-checkbox)
 
 [![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/anypoint-checkbox.svg)](https://www.npmjs.com/package/@anypoint-web-components/anypoint-checkbox)
-
-# anypoint-checkbox
-
-Anypoint styled checkbox.
 
 ## Working with forms
 
@@ -23,7 +23,7 @@ In other words, when change of the state of the control triggers change in the U
 
 ### Installation
 
-```
+```sh
 npm i --save @anypoint-web-components/anypoint-checkbox
 ```
 
@@ -78,8 +78,8 @@ npm i --save @polymer/iron-form
 <script type="module" src="node_modules/@anypoint-web-components/anypoint-button/anypoint-button.js"></script>
 <iron-form>
   <form>
-   <anypoint-checkbox name="subscribe" value="newsletetr">Subsceribe to our newsletter</anypoint-checkbox>
-   <anypoint-checkbox name="tems" value="accepted" checked required>Agree to terms and conditions</anypoint-checkbox>
+   <anypoint-checkbox name="subscribe" value="newsletter">Subscribe to our newsletter</anypoint-checkbox>
+   <anypoint-checkbox name="terms" value="accepted" checked required>Agree to terms and conditions</anypoint-checkbox>
    <anypoint-checkbox name="disabled" value="noop" disabled>This is never included</anypoint-checkbox>
   </form>
   <anypoint-button id="submit"></anypoint-button>
@@ -107,6 +107,7 @@ npm start
 ```
 
 ### Running the tests
+
 ```sh
 npm test
 ```
