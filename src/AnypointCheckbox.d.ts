@@ -58,14 +58,14 @@ import { CheckedElementMixin } from '@anypoint-web-components/anypoint-form-mixi
  * 
  * @fires change Fired when the checked state changes due to user interaction.
  */
-export class AnypointCheckbox {
-  static styles: CSSResult;
+export class AnypointCheckbox  extends ButtonStateMixin(ControlStateMixin(CheckedElementMixin(LitElement))) {
+  get styles(): CSSResult;
 
   render(): TemplateResult;
 
-  static readonly formAssociated: boolean;
+  static get formAssociated(): boolean;
 
-  readonly form: HTMLFormElement|null;
+  static get form(): HTMLFormElement|null;
   /**
    * @attribute
    */
@@ -105,8 +105,4 @@ export class AnypointCheckbox {
   formResetCallback(): void;
 
   formStateRestoreCallback(state: any): void;
-}
-
-export declare interface AnypointCheckbox extends ButtonStateMixin, ControlStateMixin, CheckedElementMixin, LitElement {
-  onchange: EventListener;
 }

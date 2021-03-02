@@ -2,9 +2,9 @@
 
 Anypoint and Material DS styled checkbox.
 
-[![Build Status](https://travis-ci.com/anypoint-web-components/anypoint-checkbox.svg)](https://travis-ci.com/anypoint-web-components/anypoint-checkbox)
-
 [![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/anypoint-checkbox.svg)](https://www.npmjs.com/package/@anypoint-web-components/anypoint-checkbox)
+
+[![tests](https://github.com/anypoint-web-components/anypoint-checkbox/actions/workflows/tests.yml/badge.svg)](https://github.com/anypoint-web-components/anypoint-checkbox/actions/workflows/tests.yml)
 
 ## Working with forms
 
