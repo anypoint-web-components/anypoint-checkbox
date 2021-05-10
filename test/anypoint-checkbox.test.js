@@ -1,52 +1,83 @@
 import { fixture, assert, aTimeout } from '@open-wc/testing';
-import '@polymer/iron-test-helpers/mock-interactions.js';
+import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
+import '@anypoint-web-components/anypoint-styles/colors.js';
 import '../anypoint-checkbox.js';
 
-/* global MockInteractions */
+/** @typedef {import('../').AnypointCheckbox} AnypointCheckbox */
 
-describe('<anypoint-checkbox>', function() {
+describe('<anypoint-checkbox>', () => {
+  /**
+   * @returns {Promise<AnypointCheckbox>}
+   */
   async function basicFixture() {
-    return (await fixture(`<anypoint-checkbox></anypoint-checkbox>`));
+    return (fixture(`<anypoint-checkbox></anypoint-checkbox>`));
   }
 
+  /**
+   * @returns {Promise<AnypointCheckbox>}
+   */
   async function noLabelFixture() {
-    return (await fixture(`<anypoint-checkbox></anypoint-checkbox>`));
+    return (fixture(`<anypoint-checkbox></anypoint-checkbox>`));
   }
 
+  /**
+   * @returns {Promise<AnypointCheckbox>}
+   */
   async function withLabelFixture() {
-    return (await fixture(`<anypoint-checkbox>Batman</anypoint-checkbox>`));
+    return (fixture(`<anypoint-checkbox>Batman</anypoint-checkbox>`));
   }
 
+  /**
+   * @returns {Promise<AnypointCheckbox>}
+   */
   async function roleFixture() {
-    return (await fixture(`<anypoint-checkbox role="button">Batman</anypoint-checkbox>`));
+    return (fixture(`<anypoint-checkbox role="button">Batman</anypoint-checkbox>`));
   }
 
+  /**
+   * @returns {Promise<AnypointCheckbox>}
+   */
   async function checkedFixture() {
-    return (await fixture(`<anypoint-checkbox checked>Batman</anypoint-checkbox>`));
+    return (fixture(`<anypoint-checkbox checked>Batman</anypoint-checkbox>`));
   }
 
+  /**
+   * @returns {Promise<AnypointCheckbox>}
+   */
   async function tabindexFixture() {
-    return (await fixture(`<anypoint-checkbox tabindex="-1">Batman</anypoint-checkbox>`));
+    return (fixture(`<anypoint-checkbox tabindex="-1">Batman</anypoint-checkbox>`));
   }
 
+  /**
+   * @returns {Promise<AnypointCheckbox>}
+   */
   async function indeterminateFixture() {
-    return (await fixture(`<anypoint-checkbox indeterminate></anypoint-checkbox>`));
+    return (fixture(`<anypoint-checkbox indeterminate></anypoint-checkbox>`));
   }
 
+  /**
+   * @returns {Promise<HTMLFormElement>}
+   */
   async function formFixture() {
-    return (await fixture(`<form>
+    return (fixture(`<form>
       <anypoint-checkbox name="test-name" value="test-value"></anypoint-checkbox>
     </form>`));
   }
 
+  /**
+   * @returns {Promise<HTMLFormElement>}
+   */
   async function formCheckedFixture() {
-    return (await fixture(`<form>
+    return (fixture(`<form>
       <anypoint-checkbox name="test-name" value="test-value" checked></anypoint-checkbox>
     </form>`));
   }
 
+  /**
+   * @returns {Promise<HTMLFormElement>}
+   */
   async function formCheckedRequiredFixture() {
-    return (await fixture(`<form>
+    return (fixture(`<form>
       <anypoint-checkbox name="test-name" value="test-value" checked required></anypoint-checkbox>
     </form>`));
   }
@@ -121,7 +152,7 @@ describe('<anypoint-checkbox>', function() {
 
     it('check checkbox via click', async () => {
       MockInteractions.tap(c1);
-      await aTimeout();
+      await aTimeout(0);
       assert.equal(c1.getAttribute('aria-checked'), 'true', 'Has aria-checked');
       assert.isTrue(c1.checked, '.checked is true');
     });
@@ -129,7 +160,7 @@ describe('<anypoint-checkbox>', function() {
     it('toggle checkbox via click', async () => {
       c1.checked = true;
       MockInteractions.tap(c1);
-      await aTimeout();
+      await aTimeout(0);
       assert.isFalse(c1.getAttribute('aria-checked') !== 'false');
       assert.isFalse(c1.checked);
     });
@@ -138,7 +169,7 @@ describe('<anypoint-checkbox>', function() {
       c1.disabled = true;
       c1.checked = true;
       MockInteractions.tap(c1);
-      await aTimeout();
+      await aTimeout(0);
       assert.isTrue(c1.getAttribute('aria-checked') === 'true');
       assert.isTrue(c1.checked);
     });
@@ -224,7 +255,7 @@ describe('<anypoint-checkbox>', function() {
 
     it('Removes indeterminate when clicked', async () => {
       MockInteractions.tap(element);
-      await aTimeout();
+      await aTimeout(0);
       assert.isFalse(element.indeterminate);
     });
 
@@ -235,13 +266,13 @@ describe('<anypoint-checkbox>', function() {
 
     it('Removes indeterminate when space pressed', async () => {
       MockInteractions.pressSpace(element);
-      await aTimeout();
+      await aTimeout(0);
       assert.isFalse(element.indeterminate);
     });
 
     it('Removes indeterminate when enter pressed', async () => {
       MockInteractions.pressEnter(element);
-      await aTimeout();
+      await aTimeout(0);
       assert.isFalse(element.indeterminate);
     });
   });
@@ -277,6 +308,7 @@ describe('<anypoint-checkbox>', function() {
     it('Has associated form', async () => {
       const form = await formFixture();
       const element = form.querySelector('anypoint-checkbox');
+      // @ts-ignore
       if (element._internals) {
         assert.isTrue(element.form === form);
       }
@@ -285,6 +317,7 @@ describe('<anypoint-checkbox>', function() {
     it('Form reset resets the control', async () => {
       const form = await formCheckedFixture();
       const element = form.querySelector('anypoint-checkbox');
+      // @ts-ignore
       if (element._internals) {
         form.reset();
         assert.isFalse(element.checked);
@@ -294,10 +327,53 @@ describe('<anypoint-checkbox>', function() {
     it('Sets custom validation', async () => {
       const form = await formCheckedRequiredFixture();
       const element = form.querySelector('anypoint-checkbox');
+      // @ts-ignore
       if (element._internals) {
         element.checked = false;
         assert.isTrue(element.matches(':invalid'));
       }
+    });
+  });
+
+  describe('change', () => {
+    let element = /** @type AnypointCheckbox */ (null);
+    beforeEach(async () => {
+      element = await basicFixture();
+    });
+
+    it('Getter returns previously registered handler', () => {
+      assert.equal(element.onchange, null);
+      const f = () => {};
+      element.onchange = f;
+      assert.isTrue(element.onchange === f);
+    });
+
+    it('Calls registered function', () => {
+      let called = false;
+      const f = () => {
+        called = true;
+      };
+      element.onchange = f;
+      element.click();
+      element.onchange = null;
+      assert.isTrue(called);
+    });
+
+    it('Unregisteres old function', () => {
+      let called1 = false;
+      let called2 = false;
+      const f1 = () => {
+        called1 = true;
+      };
+      const f2 = () => {
+        called2 = true;
+      };
+      element.onchange = f1;
+      element.onchange = f2;
+      element.click();
+      element.onchange = null;
+      assert.isFalse(called1);
+      assert.isTrue(called2);
     });
   });
 });

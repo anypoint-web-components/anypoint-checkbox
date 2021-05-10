@@ -80,6 +80,14 @@
           "type": "CSSResult"
         },
         {
+          "name": "form",
+          "type": "HTMLFormElement | null"
+        },
+        {
+          "name": "onchange",
+          "type": "EventListener"
+        },
+        {
           "name": "indeterminate",
           "attribute": "indeterminate",
           "type": "boolean"
@@ -128,6 +136,11 @@
           "attribute": "checked",
           "description": "Gets or sets the state, `true` is checked and `false` is unchecked.",
           "type": "boolean"
+        },
+        {
+          "name": "oncheckedchange",
+          "description": "An event listener for the `change` event or null to unregister",
+          "type": "EventListener"
         },
         {
           "name": "toggles",
@@ -212,6 +225,10 @@
         {
           "name": "checked-changed",
           "description": "Deprecated"
+        },
+        {
+          "name": "checkedchange",
+          "description": "Dispatched when the `checked` property change regardless of the source of the change."
         }
       ]
     }

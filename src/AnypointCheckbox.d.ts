@@ -65,7 +65,10 @@ export class AnypointCheckbox  extends ButtonStateMixin(ControlStateMixin(Checke
 
   static get formAssociated(): boolean;
 
-  static get form(): HTMLFormElement|null;
+  get form(): HTMLFormElement|null;
+
+  onchange: EventListener;
+  
   /**
    * @attribute
    */

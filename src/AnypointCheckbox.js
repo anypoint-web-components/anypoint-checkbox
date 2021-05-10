@@ -83,6 +83,32 @@ export class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(Checked
     return this._internals && this._internals.form;
   }
 
+  /**
+   * @returns {EventListener} Previously registered event listener or null
+   */
+  get onchange() {
+    return this._onchange || null;
+  }
+
+  /**
+   * @param {EventListener} value An event listener for the `change` event or null to unregister
+   */
+  set onchange(value) {
+    const old = this._onchange;
+    if (old === value) {
+      return;
+    }
+    if (old) {
+      this.removeEventListener('change', old);
+    }
+    if (typeof value !== 'function') {
+      this._onchange = null;
+    } else {
+      this._onchange = value;
+      this.addEventListener('change', value);
+    }
+  }
+
   static get properties() {
     return {
       ariaActiveAttribute: { type: String },
@@ -158,6 +184,7 @@ export class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(Checked
       this.indeterminate = false;
     }
     this.active = !this.active;
+    this.dispatchEvent(new Event('change'));
   }
 
   _checkedChanged(value) {
