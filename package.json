@@ -1,7 +1,7 @@
 {
   "name": "@anypoint-web-components/anypoint-checkbox",
   "description": "Anypoint and Material DS styled checkbox",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "Apache-2.0",
   "main": "index.js",
   "module": "index.js",
@@ -40,14 +40,14 @@
     "@polymer/iron-form": "^3.0.1",
     "@polymer/iron-test-helpers": "^3.0.1",
     "@web/dev-server": "^0.1.17",
-    "@web/test-runner": "^0.13.4",
-    "@web/test-runner-playwright": "^0.8.5",
-    "eslint": "^7.26.0",
+    "@web/test-runner": "^0.13.5",
+    "@web/test-runner-playwright": "^0.8.6",
+    "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
-    "sinon": "^10.0.0",
-    "typescript": "^4.2.4",
+    "sinon": "^11.1.1",
+    "typescript": "^4.3.2",
     "typescript-lit-html-plugin": "^0.9.0"
   },
   "scripts": {
