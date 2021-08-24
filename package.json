@@ -1,7 +1,7 @@
 {
   "name": "@anypoint-web-components/anypoint-checkbox",
   "description": "Anypoint and Material DS styled checkbox",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "license": "Apache-2.0",
   "main": "index.js",
   "module": "index.js",
@@ -12,7 +12,7 @@
     "form-control"
   ],
   "author": {
-    "name": "Pawel Psztyc",
+    "name": "Pawel Uchida-Psztyc",
     "email": "arc@mulesoft.com"
   },
   "contributors": [
@@ -33,21 +33,21 @@
   },
   "devDependencies": {
     "@advanced-rest-client/arc-demo-helper": "^1.0.17",
-    "@anypoint-web-components/anypoint-radio-button": "^0.1.7",
-    "@anypoint-web-components/anypoint-styles": "^1.0.1",
+    "@anypoint-web-components/anypoint-radio-button": "^0.1.9",
+    "@anypoint-web-components/anypoint-styles": "^1.0.2",
     "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/testing": "^2.5.33",
     "@polymer/iron-form": "^3.0.1",
     "@polymer/iron-test-helpers": "^3.0.1",
-    "@web/dev-server": "^0.1.17",
-    "@web/test-runner": "^0.13.5",
-    "@web/test-runner-playwright": "^0.8.6",
-    "eslint": "^7.27.0",
+    "@web/dev-server": "^0.1.22",
+    "@web/test-runner": "^0.13.16",
+    "@web/test-runner-playwright": "^0.8.8",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "husky": "^6.0.0",
-    "lint-staged": "^11.0.0",
-    "sinon": "^11.1.1",
-    "typescript": "^4.3.2",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
+    "sinon": "^11.1.2",
+    "typescript": "^4.3.5",
     "typescript-lit-html-plugin": "^0.9.0"
   },
   "scripts": {
