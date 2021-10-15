@@ -1,4 +1,8 @@
-# anypoint-checkbox
+# Deprecated
+
+This component has been moved to `anypoint-web-components/awc`.
+
+====
 
 Anypoint and Material DS styled checkbox.
 
