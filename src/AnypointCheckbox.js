@@ -193,7 +193,7 @@ export class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(Checked
       this.indeterminate = false;
     }
     this.setAttribute('aria-checked', value ? 'true' : 'false');
-    if (this._internals) {
+    if (this._internals && this._internals.setFormValue && this._internals.setValidity) {
       this._internals.setFormValue(value ? this.value : '');
 
       if (!this.matches(':disabled') && this.hasAttribute('required') && !value) {
@@ -216,7 +216,7 @@ export class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(Checked
   }
 
   checkValidity() {
-    if (this._internals) {
+    if (this._internals && this._internals.checkValidity) {
       return this._internals.checkValidity();
     }
     return this.required ? this.checked : true;
@@ -228,11 +228,15 @@ export class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(Checked
 
   formResetCallback() {
     this.checked = false;
-    this._internals.setFormValue('');
+    if (this._internals && this._internals.setFormValue) {
+      this._internals.setFormValue('');
+    }
   }
 
   formStateRestoreCallback(state) {
-    this._internals.setFormValue(state);
+    if (this._internals && this._internals.setFormValue) {
+      this._internals.setFormValue(state);
+    }
     this.checked = !!state;
   }
 }
