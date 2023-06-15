@@ -1,7 +1,7 @@
 {
   "name": "@anypoint-web-components/anypoint-checkbox",
   "description": "Anypoint and Material DS styled checkbox",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "license": "Apache-2.0",
   "main": "index.js",
   "module": "index.js",
