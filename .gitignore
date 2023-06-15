@@ -56,3 +56,6 @@ $RECYCLE.BIN/
 
 node_modules
 coverage
+
+# IntelliJ
+.idea/
