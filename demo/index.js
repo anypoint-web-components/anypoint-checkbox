@@ -95,8 +95,7 @@ class ComponentDemo extends ArcDemoPage {
     const {
       demoStates,
       darkThemeActive,
-      demoDisabled,
-      demoRequired
+      demoDisabled
     } = this;
     return html`<section class="documentation-section">
       <h3>Interactive demo</h3>
