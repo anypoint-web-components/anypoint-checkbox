@@ -304,37 +304,6 @@ describe('<anypoint-checkbox>', () => {
     });
   });
 
-  describe('_internals', () => {
-    it('Has associated form', async () => {
-      const form = await formFixture();
-      const element = form.querySelector('anypoint-checkbox');
-      // @ts-ignore
-      if (element._internals) {
-        assert.isTrue(element.form === form);
-      }
-    });
-
-    it('Form reset resets the control', async () => {
-      const form = await formCheckedFixture();
-      const element = form.querySelector('anypoint-checkbox');
-      // @ts-ignore
-      if (element._internals) {
-        form.reset();
-        assert.isFalse(element.checked);
-      }
-    });
-
-    it('Sets custom validation', async () => {
-      const form = await formCheckedRequiredFixture();
-      const element = form.querySelector('anypoint-checkbox');
-      // @ts-ignore
-      if (element._internals) {
-        element.checked = false;
-        assert.isTrue(element.matches(':invalid'));
-      }
-    });
-  });
-
   describe('change', () => {
     let element = /** @type AnypointCheckbox */ (null);
     beforeEach(async () => {

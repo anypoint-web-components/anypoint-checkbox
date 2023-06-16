@@ -75,14 +75,6 @@ export class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(Checked
       <label class="checkboxLabel"><slot></slot></label>`;
   }
 
-  static get formAssociated() {
-    return true;
-  }
-
-  get form() {
-    return this._internals && this._internals.form;
-  }
-
   /**
    * @returns {EventListener} Previously registered event listener or null
    */
@@ -125,11 +117,6 @@ export class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(Checked
     this.checked = false;
     /* to work with iron-form */
     this._hasIronCheckedElementBehavior = true;
-    // @ts-ignore
-    if (this.attachInternals) {
-      // @ts-ignore
-      this._internals = this.attachInternals();
-    }
   }
 
   connectedCallback() {
@@ -193,19 +180,7 @@ export class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(Checked
       this.indeterminate = false;
     }
     this.setAttribute('aria-checked', value ? 'true' : 'false');
-    if (this._internals && this._internals.setFormValue && this._internals.setValidity) {
-      this._internals.setFormValue(value ? this.value : '');
-
-      if (!this.matches(':disabled') && this.hasAttribute('required') && !value) {
-        this._internals.setValidity({
-          customError: true
-        }, 'This field is required.');
-      } else {
-        this._internals.setValidity({});
-      }
-    } else {
-      this.validate(this.checked);
-    }
+    this.validate(this.checked);
   }
 
   _spaceKeyDownHandler(e) {
@@ -216,9 +191,6 @@ export class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(Checked
   }
 
   checkValidity() {
-    if (this._internals && this._internals.checkValidity) {
-      return this._internals.checkValidity();
-    }
     return this.required ? this.checked : true;
   }
 
@@ -228,15 +200,9 @@ export class AnypointCheckbox extends ButtonStateMixin(ControlStateMixin(Checked
 
   formResetCallback() {
     this.checked = false;
-    if (this._internals && this._internals.setFormValue) {
-      this._internals.setFormValue('');
-    }
   }
 
   formStateRestoreCallback(state) {
-    if (this._internals && this._internals.setFormValue) {
-      this._internals.setFormValue(state);
-    }
     this.checked = !!state;
   }
 }
